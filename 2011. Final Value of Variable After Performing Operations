@@ -1,0 +1,60 @@
+Approach 1:
+class Solution {
+    public int finalValueAfterOperations(String[] operations) {
+        int val = 0;
+        for(int i = 0; i<operations.length; i++){
+            if(operations[i].charAt(1)=='+') val++;
+            else val--;
+        }
+        return val;
+    }
+}
+
+Approach 2:
+class Solution {
+    public int finalValueAfterOperations(String[] operations) {
+        String s=" ";
+        int x=0;
+        for(int i=0; i<operations.length;i++)
+        {
+            s=operations[i];
+            switch(s)
+            {
+                case "++X":
+                ++x;
+                break;
+                case "X++":
+                x++;
+                break;
+                case "--X":
+                --x;
+                break;
+                case "X--":
+                x--;
+                break;
+                default:
+                    System.exit(0);
+            }
+        }
+         return x;
+    }
+}
+
+Approach 3:
+class Solution {
+    public int finalValueAfterOperations(String[] op) {
+        int ans = 0;
+        for(int i=0;i<op.length;i++){
+            String s = op[i];
+            if(s.charAt(0)=='X'&&s.charAt(1)=='+')
+                ans++;
+            else if(s.charAt(0)=='X'&&s.charAt(1)=='-')
+                ans--;
+            else if(s.charAt(0)=='+')
+                ans++;
+            else
+                ans--;
+        }
+        return ans;
+    }
+}
