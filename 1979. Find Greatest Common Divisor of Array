@@ -1,0 +1,19 @@
+class Solution {
+    public int findGCD(int[] nums) {
+        int largest = nums[0];
+        int smallest = nums[0];
+        int gcd=0;
+        for(int i:nums)
+        {
+            smallest = Math.min(smallest,i);
+            largest= Math.max(largest,i);
+        }
+        //int p=smallest*largest;
+        for(int i=1;i<=smallest;i++)
+        {
+            if(largest%i==0 && smallest%i==0)
+                gcd=i;
+        }
+        return gcd;
+    }
+}
