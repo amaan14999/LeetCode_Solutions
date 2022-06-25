@@ -1,0 +1,48 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+
+// HASHSET APPROACH
+
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        HashSet<ListNode> hs= new HashSet<>();
+        while(headA!=null)
+        {
+            hs.add(headA);
+            headA=headA.next;
+        }
+        while(headB!=null)
+        {
+            if(hs.contains(headB))
+            {
+                return headB;
+            }
+            headB=headB.next;
+        }
+        return null;
+    }
+}
+
+//OPTIMISED DIFFERENCE OF LENGTH Ref. Striver
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode ptr1=headA;
+        ListNode ptr2=headB;
+        
+        while(ptr1!=ptr2)
+        {
+            ptr1= ptr1==null ? headB:ptr1.next;
+            ptr2= ptr2==null ? headA:ptr2.next;
+        }
+        return ptr1;
+    }
+}
