@@ -8,32 +8,35 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-public class Solution {
-    public ListNode reverseBetween(ListNode head, int m, int n) {
-        ListNode dummy = new ListNode(0);
-        dummy.next = head;
-        //first part
-        ListNode cur1 = dummy;
-        ListNode pre1 = null;
-        for(int i=0;i<m;i++){
-            pre1 = cur1;
-            cur1 = cur1.next;
+class Solution {
+    public ListNode reverseBetween(ListNode head, int left, int right) {
+        ListNode dummy=new ListNode();
+        dummy.next=head;
+        ListNode curr1=dummy;
+        ListNode prev1=null;
+        
+        //moving current pointer to the start from wherewe need to reverse and moving previous pointer to a node before that
+        for(int i=0;i<left;i++)
+        {
+            prev1=curr1;
+            curr1=curr1.next;
         }
         
-        //reverse
-        ListNode cur2 = cur1;
-        ListNode pre2 = pre1;
-        ListNode q2;
-        for(int i=m;i<=n;i++){
-            q2 = cur2.next;
-            cur2.next = pre2;
-            pre2 = cur2;
-            cur2 = q2;
+        //Reversing the list
+        ListNode curr2=curr1;
+        ListNode prev2=prev1;
+        ListNode next=null;
+        for(int i=left;i<=right;i++)
+        {
+            next=curr2.next;
+            curr2.next=prev2;
+            prev2=curr2;
+            curr2=next;
         }
         
-        //connect 
-        pre1.next = pre2;
-        cur1.next = cur2;
+        //reconnecting the before end after of the list
+        prev1.next=prev2;
+        curr1.next=curr2;
         
         return dummy.next;
     }
