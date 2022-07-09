@@ -49,4 +49,4 @@ class Solution {
         return true;
     }
 }
-//20 lines, O(n), 6ms
+//20 lines, O(n), 3ms
